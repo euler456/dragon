@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龍騰先進有限公司 | Vast Wings Advanced Ltd. - 先進科技解決方案</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#070c14',
+                            navy: '#0b132b',
+                            blue: '#00d2ff',
+                            orange: '#ff8c00',
+                            slate: '#1c2541'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+        }
+        /* 科技感動態背景微光 */
+        .glow-sphere {
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 overflow-x-hidden">
+
+    <!-- 頂部導覽列 (Navbar) -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Brand Name -->
+            <a href="#" class="flex items-center gap-3">
+                <!-- SVG 動態繪製企業 Logo -->
+                <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logo-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00d2ff"/>
+                            <stop offset="100%" stop-color="#ff8c00"/>
+                        </linearGradient>
+                        <linearGradient id="logo-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ff8c00"/>
+                            <stop offset="100%" stop-color="#7a0010"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- 左側羽翼 (V) -->
+                    <path d="M15,25 C15,25 35,65 38,78 C40,80 43,80 45,78 C48,65 58,45 68,35" stroke="url(#logo-grad-1)" stroke-width="8" stroke-linecap="round"/>
+                    <!-- 右側羽翼風流 (W) -->
+                    <path d="M48,52 C55,42 75,25 85,25 C82,32 70,42 60,48 C75,42 82,35 83,40 C75,48 55,68 45,78" fill="url(#logo-grad-2)"/>
+                </svg>
+                <div>
+                    <span class="block text-lg font-bold tracking-wider leading-none text-white">龍騰先進</span>
+                    <span class="block text-[10px] text-slate-400 font-mono tracking-widest uppercase">Vast Wings Advanced</span>
+                </div>
+            </a>
+
+            <!-- 桌機導覽項目 -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm font-medium text-slate-300 hover:text-brand-blue transition">關於我們</a>
+                <a href="#products" class="text-sm font-medium text-slate-300 hover:text-brand-blue transition">核心技術</a>
+                <a href="#esg" class="text-sm font-medium text-slate-300 hover:text-brand-blue transition">ESG計算器</a>
+                <a href="#cases" class="text-sm font-medium text-slate-300 hover:text-brand-blue transition">應用案例</a>
+                <a href="#contact" class="px-5 py-2.5 bg-gradient-to-r from-brand-blue to-brand-orange text-brand-dark font-bold text-sm rounded-lg hover:shadow-lg hover:shadow-brand-blue/20 transition-all duration-300">聯絡我們</a>
+            </nav>
+
+            <!-- 手機選單按鈕 -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- 手機抽屜式選單 -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-brand-navy border-b border-white/10 px-6 py-8 flex flex-col gap-6">
+            <a href="#about" class="text-lg text-slate-300 hover:text-brand-blue" onclick="toggleMenu()">關於我們</a>
+            <a href="#products" class="text-lg text-slate-300 hover:text-brand-blue" onclick="toggleMenu()">核心技術</a>
+            <a href="#esg" class="text-lg text-slate-300 hover:text-brand-blue" onclick="toggleMenu()">ESG計算器</a>
+            <a href="#cases" class="text-lg text-slate-300 hover:text-brand-blue" onclick="toggleMenu()">應用案例</a>
+            <a href="#contact" class="w-full text-center py-3 bg-gradient-to-r from-brand-blue to-brand-orange text-brand-dark font-bold rounded-lg" onclick="toggleMenu()">聯絡我們</a>
+        </div>
+    </header>
+
+    <!-- 視覺背景微光球 -->
+    <div class="fixed top-1/4 left-10 w-96 h-96 rounded-full bg-brand-blue glow-sphere z-0"></div>
+    <div class="fixed bottom-1/4 right-10 w-[500px] h-[500px] rounded-full bg-brand-orange glow-sphere z-0"></div>
+
+    <!-- 首頁 Hero Section -->
+    <section class="relative pt-32 pb-20 md:py-40 flex items-center min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- 標題與引言 -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-brand-blue text-xs uppercase tracking-widest">
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+                        </span>
+                        2026 先進科技前瞻方案
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight text-white">
+                        致力先進解決方案 <br>
+                        <span class="bg-gradient-to-r from-brand-blue via-brand-orange to-red-500 bg-clip-text text-transparent">
+                            協助客戶成就卓越
+                        </span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-300 font-light max-w-2xl mx-auto lg:mx-0">
+                        龍騰先進有限公司 (VWA) 深耕精密光學、5G 無源訊號強化、AI 零基建定位與高規資安抹除領域。以綠色、安全、高階技術，讓生活更精彩。
+                    </p>
+                    <div class="font-semibold text-brand-orange text-lg sm:text-xl font-mono tracking-wide">
+                        "Enhance your life by Vast Wings Advanced"
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#products" class="px-8 py-4 bg-brand-blue hover:bg-brand-blue/90 text-brand-dark font-bold rounded-xl shadow-lg shadow-brand-blue/20 transition text-center">
+                            探索核心技術 <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#esg" class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium rounded-xl transition text-center">
+                            模擬 ESG 減碳效益
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 右側：SVG 大型動態科技儀表板/Logo 模擬圖 -->
+                <div class="lg:col-span-5 flex justify-center relative">
+                    <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-brand-blue/10 to-brand-orange/10 absolute -z-10 animate-pulse"></div>
+                    <svg class="w-full max-w-[420px] h-auto drop-shadow-[0_0_50px_rgba(0,210,255,0.2)] animate-[spin_120s_linear_infinite]" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 外環科技軌道 -->
+                        <circle cx="200" cy="200" r="180" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
+                        <circle cx="200" cy="200" r="180" stroke="#00d2ff" stroke-width="3" stroke-dasharray="40 180" stroke-linecap="round"/>
+                        <circle cx="200" cy="200" r="150" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                        <circle cx="200" cy="200" r="150" stroke="#ff8c00" stroke-width="2" stroke-dasharray="120 120" stroke-linecap="round"/>
+                        
+                        <!-- 內裝飾網格 -->
+                        <path d="M200,20 L200,380 M20,200 L380,200" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+                        
+                        <!-- 中央發光Logo主體 -->
+                        <g transform="translate(140, 140) scale(1.2)">
+                            <path d="M15,25 C15,25 35,65 38,78 C40,80 43,80 45,78 C48,65 58,45 68,35" stroke="url(#hero-logo-grad-1)" stroke-width="8" stroke-linecap="round"/>
+                            <path d="M48,52 C55,42 75,25 85,25 C82,32 70,42 60,48 C75,42 82,35 83,40 C75,48 55,68 45,78" fill="url(#hero-logo-grad-2)"/>
+                        </g>
+                        <defs>
+                            <linearGradient id="hero-logo-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d2ff"/>
+                                <stop offset="100%" stop-color="#ff8c00"/>
+                            </linearGradient>
+                            <linearGradient id="hero-logo-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ff8c00"/>
+                                <stop offset="100%" stop-color="#ea580c"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作客戶牆 (Client Slider) -->
+    <section class="py-12 bg-slate-950/60 border-y border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h4 class="text-center text-sm font-semibold tracking-wider text-slate-400 uppercase mb-8">頂尖產官學合作夥伴</h4>
+            
+            <!-- 客戶 Logo 牆 RWD 排版 -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-base font-bold text-white tracking-widest">國立中山大學</span>
+                    <span class="text-[10px] text-slate-500 font-mono">NSYSU</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-base font-bold text-white tracking-widest">工業技術研究院</span>
+                    <span class="text-[10px] text-slate-500 font-mono">ITRI</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-base font-bold text-white tracking-widest">陽明交通大學</span>
+                    <span class="text-[10px] text-slate-500 font-mono">NYCU</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-base font-bold text-white tracking-widest">國立清華大學</span>
+                    <span class="text-[10px] text-slate-500 font-mono">NTHU</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-base font-bold text-white tracking-widest">友達光電</span>
+                    <span class="text-[10px] text-slate-500 font-mono">AU Optronics</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-base font-bold text-white tracking-widest">微星科技 / 宏碁</span>
+                    <span class="text-[10px] text-slate-500 font-mono">MSI / ACER</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們 Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- 左側：多媒體圖文盒 -->
+                <div class="space-y-6">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <!-- 背景科技掃描線效果 -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent z-10"></div>
+                        <img src="https://metrology.news/wp-content/uploads/2026/05/High-Productivity-Benchtop-3D-Optical-Scanning-for-In-Process-Metrology.png" alt="Tech Lab" class="w-full h-96 object-cover">
+                        <div class="absolute bottom-6 left-6 z-20">
+                            <span class="text-xs font-bold text-brand-orange uppercase tracking-widest">成立於 2020 年</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">領航精密先進科技研發</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側：文字內容 -->
+                <div class="space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-brand-blue uppercase tracking-widest">About VWA</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white">關於龍騰先進</h2>
+                        <div class="h-1 w-20 bg-brand-blue"></div>
+                    </div>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        龍騰先進有限公司自成立以來，持續與國內頂尖學研機構（如中山大學、工研院、陽明交通大學）展開深度的專案合作，將先進的電磁物理、光學鍍膜及即時演算法轉化為商業落地方案。
+                    </p>
+                    
+                    <!-- 核心三大優勢 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center text-brand-blue text-xl flex-shrink-0">
+                                <i class="fa-solid fa-microscope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">頂尖學研實力</h4>
+                                <p class="text-sm text-slate-400 mt-1">融合尖端物理研究與製程落地</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange text-xl flex-shrink-0">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">ESG 永續承諾</h4>
+                                <p class="text-sm text-slate-400 mt-1">提供無能耗反射與循環資安方案</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">世界級資安技術</h4>
+                                <p class="text-sm text-slate-400 mt-1">獲全球第一多項國際標準認證</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl flex-shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">DDS 低延遲傳輸</h4>
+                                <p class="text-sm text-slate-400 mt-1">國家級超高速加密傳輸技術</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心技術與產品 Section (Tabs 互動) -->
+    <section id="products" class="py-24 bg-brand-navy/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-widest">Our Technologies</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">四大核心技術與營業項目</h2>
+                <p class="text-slate-400">點擊下方技術分類按鈕，檢視即時詳盡的規格與解決方案說明</p>
+            </div>
+
+            <!-- Tab 控制按鈕 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="switchTab('optical')" id="btn-optical" class="tab-btn px-6 py-3.5 rounded-xl border font-bold text-sm transition-all duration-300 flex items-center gap-2 bg-brand-blue text-brand-dark border-brand-blue">
+                    <i class="fa-solid fa-circle-nodes"></i> 光學鍍膜與閃爍體
+                </button>
+                <button onclick="switchTab('reflector')" id="btn-reflector" class="tab-btn px-6 py-3.5 rounded-xl border border-white/10 font-bold text-sm text-slate-400 hover:text-white hover:border-white/20 transition-all duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-tower-broadcast"></i> 5G 毫米波反光膜
+                </button>
+                <button onclick="switchTab('aiot')" id="btn-aiot" class="tab-btn px-6 py-3.5 rounded-xl border border-white/10 font-bold text-sm text-slate-400 hover:text-white hover:border-white/20 transition-all duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-map-location-dot"></i> AI 定位與 DDS 技術
+                </button>
+                <button onclick="switchTab('blancco')" id="btn-blancco" class="tab-btn px-6 py-3.5 rounded-xl border border-white/10 font-bold text-sm text-slate-400 hover:text-white hover:border-white/20 transition-all duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i> Blancco 數據安全抹除
+                </button>
+            </div>
+
+            <!-- Tab 內容區域 -->
+            <div class="bg-brand-slate/50 border border-white/10 rounded-2xl p-6 sm:p-10">
+                
+                <!-- Tab 1: 光學鍍膜 -->
+                <div id="tab-content-optical" class="tab-content space-y-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-brand-blue/10 text-brand-blue text-xs rounded font-mono">01</span>
+                                光學鍍膜 & Scintillator 閃爍體技術
+                            </h3>
+                            <p class="text-slate-300">
+                                專注於特殊客製化光學鍍膜研發，引進 3R 先進綠色產品。主要應用於 X-Ray 高感度檢測、醫療設備以及非破壞性檢測 (NDT) 系統中。
+                            </p>
+                            <ul class="space-y-3 text-slate-400">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> 代理 Scintillator，提供 FOS, CPS, GPS, APS 基板選擇</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> 高感度 X-ray Camera（解析度達 16 lp/mm）</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> 自訂鉛屏蔽箱 (Pb Chamber) 與 X-ray 產生器整合</li>
+                            </ul>
+                        </div>
+                        <div class="overflow-x-auto border border-white/5 rounded-xl bg-slate-900/40">
+                            <!-- 互動表格 -->
+                            <table class="w-full text-left text-sm text-slate-300">
+                                <thead class="bg-slate-950 text-brand-blue text-xs uppercase tracking-wider border-b border-white/10">
+                                    <tr>
+                                        <th class="px-6 py-4">基板名稱</th>
+                                        <th class="px-6 py-4">大尺寸上限 (mm)</th>
+                                        <th class="px-6 py-4">相對光輸出</th>
+                                        <th class="px-6 py-4">應用與特點</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5">
+                                    <tr class="hover:bg-white/5 transition">
+                                        <td class="px-6 py-4 font-bold text-white">FOS (光纖板)</td>
+                                        <td class="px-6 py-4">40 × 50</td>
+                                        <td class="px-6 py-4">100%</td>
+                                        <td class="px-6 py-4">低能量 X-ray 屏蔽與低噪檢測</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition">
+                                        <td class="px-6 py-4 font-bold text-white">CPS (碳纖板)</td>
+                                        <td class="px-6 py-4">450 × 450</td>
+                                        <td class="px-6 py-4">100%</td>
+                                        <td class="px-6 py-4">高解析度與大型結構掃描格式</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition">
+                                        <td class="px-6 py-4 font-bold text-white">GPS (玻璃板)</td>
+                                        <td class="px-6 py-4">450 × 450</td>
+                                        <td class="px-6 py-4">120%</td>
+                                        <td class="px-6 py-4">極高光輸出與大視角偵測器</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition">
+                                        <td class="px-6 py-4 font-bold text-white">APS (鋁基板)</td>
+                                        <td class="px-6 py-4">450 × 450</td>
+                                        <td class="px-6 py-4">120%</td>
+                                        <td class="px-6 py-4">高強度、抗衝擊金屬基板應用</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: 5G 反光膜 -->
+                <div id="tab-content-reflector" class="tab-content hidden space-y-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-brand-orange/10 text-brand-orange text-xs rounded font-mono">02</span>
+                                XReflector 5G 無源毫米波反光膜
+                            </h3>
+                            <p class="text-slate-300">
+                                針對 5G 毫米波 (mmWave 27-29 GHz) 繞射能力弱、易受建築遮蔽的致命缺點，龍騰研發出新型反射貼膜技術，無須任何電力驅動，完全零耗能！
+                            </p>
+                            <div class="p-5 bg-white/5 border border-white/5 rounded-xl space-y-2">
+                                <h4 class="text-white font-bold text-sm">技術優勢：</h4>
+                                <p class="text-sm text-slate-400">反射率高達 95%，完全替代 50W 傳統訊號放大器，每年單點可節省 438 度電，為 ESG 綠色通訊與碳中和首選方案。</p>
+                            </div>
+                        </div>
+
+                        <!-- 互動 5G 反光膜動態模擬器 -->
+                        <div class="p-6 sm:p-8 bg-slate-950/80 rounded-2xl border border-brand-orange/20 space-y-6">
+                            <h4 class="text-white font-bold text-lg border-b border-white/5 pb-4"><i class="fa-solid fa-sliders text-brand-orange"></i> XReflector 訊號增益即時模擬器</h4>
+                            
+                            <!-- 是否開啟反光膜切換 -->
+                            <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                                <span class="text-sm font-medium">XReflector 反光膜狀態</span>
+                                <div class="flex gap-2">
+                                    <button onclick="toggleReflector(false)" id="sim-off-btn" class="px-4 py-2 text-xs font-bold rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition">關閉 (Blind Spot)</button>
+                                    <button onclick="toggleReflector(true)" id="sim-on-btn" class="px-4 py-2 text-xs font-bold bg-brand-orange text-brand-dark rounded-lg shadow-lg shadow-brand-orange/20 transition">啟動 (Reflected)</button>
+                                </div>
+                            </div>
+
+                            <!-- 模擬距離滑桿 -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-xs text-slate-400 font-mono">
+                                    <span>與基站及反光板總距離 (Distance)</span>
+                                    <span id="sim-distance-val">50 m</span>
+                                </div>
+                                <input type="range" id="sim-distance" min="10" max="150" value="50" oninput="updateSimulation()" class="w-full accent-brand-orange">
+                            </div>
+
+                            <!-- 輸出訊號強度顯示 -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900 p-4 rounded-xl text-center space-y-1">
+                                    <span class="text-xs text-slate-400">即時接收訊號 (dBm)</span>
+                                    <div id="sim-signal-val" class="text-3xl font-black text-emerald-400 font-mono">-75 dBm</div>
+                                </div>
+                                <div class="bg-slate-900 p-4 rounded-xl text-center space-y-1">
+                                    <span class="text-xs text-slate-400">通訊品質評估</span>
+                                    <div id="sim-quality-val" class="text-lg font-bold text-emerald-400">訊號極佳 (Excellent)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: AIOT 定位 -->
+                <div id="tab-content-aiot" class="tab-content hidden space-y-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-purple-500/10 text-purple-400 text-xs rounded font-mono">03</span>
+                                AI 無基建室內定位與 DDS 極速傳輸
+                            </h3>
+                            <p class="text-slate-300">
+                                擺脫傳統 iBeacon 電池維護或 UWB 高成本市電佈線，以創新的 AIOT 演算法實現定位。並整合國家網絡中心授權之 DDS 技術，保障極致低延遲與軍規安全性。
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="p-4 bg-white/5 border border-white/5 rounded-xl space-y-1">
+                                    <span class="text-purple-400 font-bold block text-sm">無基建低碳定位</span>
+                                    <p class="text-xs text-slate-400">利用 4G/5G/Wi-Fi 手機多重天線，零藍牙硬體佈置成本與維護負擔。</p>
+                                </div>
+                                <div class="p-4 bg-white/5 border border-white/5 rounded-xl space-y-1">
+                                    <span class="text-purple-400 font-bold block text-sm">DDS 加密傳輸橋接</span>
+                                    <p class="text-xs text-slate-400">建立 UDP/TCP 加密傳輸通道，大幅提升通訊防禦層次。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 h-72">
+                            <img src="https://www.mdpi.com/sensors/sensors-22-05936/article_deploy/html/images/sensors-22-05936-g001-550.jpg" alt="Indoor Tracking" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Blancco 數據抹除 -->
+                <div id="tab-content-blancco" class="tab-content hidden space-y-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded font-mono">04</span>
+                                Blancco 全方位數據抹除與 ESG 循環經濟
+                            </h3>
+                            <p class="text-slate-300">
+                                採用 0 和 1 完整覆蓋所有磁軌，使機密數據永久不可恢復。對比物理性的磁碟毀損，數據抹除可以完整保留高單價硬體的「轉售、重組與捐贈價值」，是大型企業與政府落實 ESG 電子廢棄物減量最佳的最後一哩路。
+                            </p>
+                            <div class="space-y-3">
+                                <h4 class="text-white font-bold text-sm">產品全線覆蓋：</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
+                                    <span class="bg-white/5 px-2 py-1 rounded text-slate-300">Drive Eraser</span>
+                                    <span class="bg-white/5 px-2 py-1 rounded text-slate-300">Mobile Eraser</span>
+                                    <span class="bg-white/5 px-2 py-1 rounded text-slate-300">LUN Eraser</span>
+                                    <span class="bg-white/5 px-2 py-1 rounded text-slate-300">File Eraser</span>
+                                    <span class="bg-white/5 px-2 py-1 rounded text-slate-300">VM Eraser</span>
+                                    <span class="bg-white/5 px-2 py-1 rounded text-slate-400">數位抹除證書</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 h-72">
+                            <img src="https://blancco.com/wp-content/uploads/2026/04/26.058_Events_DataCenterWebinar_Email600x200.jpg" alt="Data Security" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ESG 數據減碳計算器 Section (網頁互動核心) -->
+    <section id="esg" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <!-- 左側：輸入表單與標題 -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-brand-orange uppercase tracking-widest">ESG Interactive Tool</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white">IT 設備循環減碳計算器</h2>
+                        <div class="h-1 w-20 bg-brand-orange"></div>
+                    </div>
+                    <p class="text-slate-300">
+                        依據第三方 Repair 產業與 ESG 國際方法論，計算使用 Blancco 軟體安全抹除並重覆使用設備，相較於「直接粉碎廢棄」所節省的碳足跡。
+                    </p>
+                    
+                    <!-- 輸入設備欄位 -->
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-400">行動手機 (個)</label>
+                                <input type="number" id="calc-phone" value="50" oninput="calculateEsg()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-white font-mono focus:border-brand-orange focus:outline-none">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-400">平板電腦 (台)</label>
+                                <input type="number" id="calc-tablet" value="20" oninput="calculateEsg()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-white font-mono focus:border-brand-orange focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-400">筆記型電腦 (台)</label>
+                                <input type="number" id="calc-laptop" value="100" oninput="calculateEsg()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-white font-mono focus:border-brand-orange focus:outline-none">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-400">個人電腦 (台)</label>
+                                <input type="number" id="calc-desktop" value="40" oninput="calculateEsg()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-white font-mono focus:border-brand-orange focus:outline-none">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-400">伺服器機台 (部)</label>
+                                <input type="number" id="calc-server" value="5" oninput="calculateEsg()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-white font-mono focus:border-brand-orange focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側：動態產出看板 -->
+                <div class="lg:col-span-7 p-8 bg-brand-slate/80 border border-brand-orange/30 rounded-3xl space-y-8 shadow-[0_0_50px_rgba(251,113,133,0.05)]">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <h3 class="text-white font-bold text-xl flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-brand-orange"></i> ESG 碳盤查預估報告
+                        </h3>
+                        <span class="text-xs font-mono text-slate-400">動態即時運算</span>
+                    </div>
+
+                    <!-- 碳排總量大字 -->
+                    <div class="bg-slate-950 p-6 rounded-2xl flex flex-col items-center justify-center text-center border border-white/5 space-y-2">
+                        <span class="text-sm font-semibold tracking-wider text-slate-400 uppercase">總節省碳排放量 (CO₂ Saved)</span>
+                        <div class="flex items-baseline gap-2">
+                            <span id="esg-co2" class="text-5xl sm:text-6xl font-black text-brand-orange font-mono">0</span>
+                            <span class="text-xl font-bold text-slate-300">公斤 (KG)</span>
+                        </div>
+                    </div>
+
+                    <!-- 等同生活減碳場景 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="bg-slate-900 p-5 rounded-2xl border border-white/5 flex flex-col items-center text-center space-y-2">
+                            <div class="text-2xl text-cyan-400"><i class="fa-solid fa-truck"></i></div>
+                            <span class="text-xs text-slate-400">重型貨車行駛距離</span>
+                            <div class="text-lg font-bold text-white font-mono"><span id="esg-truck">0</span> KM</div>
+                        </div>
+                        <div class="bg-slate-900 p-5 rounded-2xl border border-white/5 flex flex-col items-center text-center space-y-2">
+                            <div class="text-2xl text-cyan-400"><i class="fa-solid fa-plane"></i></div>
+                            <span class="text-xs text-slate-400">商務飛機航行距離</span>
+                            <div class="text-lg font-bold text-white font-mono"><span id="esg-flight">0</span> KM</div>
+                        </div>
+                        <div class="bg-slate-900 p-5 rounded-2xl border border-white/5 flex flex-col items-center text-center space-y-2">
+                            <div class="text-2xl text-cyan-400"><i class="fa-solid fa-hotel"></i></div>
+                            <span class="text-xs text-slate-400">等同飯店住宿</span>
+                            <div class="text-lg font-bold text-white font-mono"><span id="esg-hotel">0</span> 晚 (Nights)</div>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-slate-500 leading-relaxed text-center italic">
+                        * 計算參數基於國際知名 Repair & Re-use 產業 ESG 方法論。可用作永續報告書之碳減免揭露參考資訊。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 實績案例與應用 Section -->
+    <section id="cases" class="py-24 bg-brand-navy/30 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-widest">Global Use Cases</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">全球應用案例與實績</h2>
+                <p class="text-slate-400">龍騰先進研發團隊的定位及傳輸技術已應用於多個全球性指標基礎建設之中</p>
+            </div>
+
+            <!-- 卡片格線 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 案例 1 -->
+                <div class="bg-brand-slate/40 border border-white/5 rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=600&q=80" alt="Changi" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs font-bold text-brand-blue uppercase tracking-widest font-mono">新加坡樟宜機場</span>
+                            <h4 class="text-xl font-bold text-white">Changi Airport 人員資產即時定位</h4>
+                            <p class="text-sm text-slate-400">
+                                整合無基建 AI 定位引擎技術，於超大型航廈及地勤管制區，對高單價維修工具及作業人員進行高精準度的實時安全與調配管理。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例 2 -->
+                <div class="bg-brand-slate/40 border border-white/5 rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="MTR" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs font-bold text-brand-blue uppercase tracking-widest font-mono">港鐵與高鐵巡檢系統</span>
+                            <h4 class="text-xl font-bold text-white">HK MTR 隧道高精智慧巡檢</h4>
+                            <p class="text-sm text-slate-400">
+                                針對GPS死角的地下軌道交通環境，在無Beacon輔助的情況下，利用多感應器融合演算實現對地下巡檢工人定位，降低公安風險。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例 3 -->
+                <div class="bg-brand-slate/40 border border-white/5 rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Factory" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs font-bold text-brand-blue uppercase tracking-widest font-mono">智慧半導體工廠</span>
+                            <h4 class="text-xl font-bold text-white">智慧廠房資產率自動核算</h4>
+                            <p class="text-sm text-slate-400">
+                                全天候追蹤精密無塵室與高階封測設備、派工車的移動軌跡與閒置時長，經 AI 分析後自動提出排程優化指引。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 聯絡我們 Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- 聯絡卡片 -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-brand-blue uppercase tracking-widest">Contact VWA</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white">預約產品展示與洽詢</h2>
+                        <div class="h-1 w-20 bg-brand-blue"></div>
+                    </div>
+                    <p class="text-slate-400">
+                        歡迎您隨時與我們取得聯繫，我們的資深方案顧問將在最快時間內為您提供詳盡的客製化專案展示。
+                    </p>
+
+                    <!-- 個人名牌 -->
+                    <div class="p-6 bg-brand-slate/60 border border-white/5 rounded-2xl space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-brand-blue to-brand-orange flex items-center justify-center text-brand-dark text-xl font-black">
+                                VL
+                            </div>
+                            <div>
+                                <span class="block text-slate-400 text-xs">專案諮詢窗口</span>
+                                <h4 class="text-lg font-bold text-white">李仁智 VanNess Li</h4>
+                            </div>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t border-white/5 text-sm font-mono text-slate-300">
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-brand-blue"></i> 0911-615685</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-brand-blue"></i> vanness.li@vastwings.com</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-circle-info text-brand-blue"></i> 統一編號：83689829</div>
+                        </div>
+                    </div>
+
+                    <!-- 公司地點 -->
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-orange/10 flex items-center justify-center text-brand-orange text-lg flex-shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-sm">
+                            <h5 class="font-bold text-white">公司總部</h5>
+                            <p class="text-slate-400 mt-1">32001 台灣省桃園市中壢區中正路82號10F(201室)</p>
+                            <p class="text-slate-500 font-mono text-[11px] mt-0.5">Rm.201, 10F., No. 82, Zhongzheng Rd., Zhongli Dist., Taoyuan City.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 聯絡表單表單 -->
+                <div class="lg:col-span-7 bg-brand-slate/40 border border-white/10 p-8 rounded-3xl space-y-6">
+                    <h3 class="text-white font-bold text-lg"><i class="fa-solid fa-paper-plane text-brand-blue"></i> 線上諮詢表單</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-400 font-medium">您的姓名 *</label>
+                                <input type="text" required class="w-full bg-slate-900 border border-white/5 focus:border-brand-blue focus:outline-none rounded-xl px-4 py-3 text-white">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-400 font-medium">公司/機構名稱 *</label>
+                                <input type="text" required class="w-full bg-slate-900 border border-white/5 focus:border-brand-blue focus:outline-none rounded-xl px-4 py-3 text-white">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-400 font-medium">連絡信箱 *</label>
+                                <input type="email" required class="w-full bg-slate-900 border border-white/5 focus:border-brand-blue focus:outline-none rounded-xl px-4 py-3 text-white">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-400 font-medium">聯絡電話</label>
+                                <input type="tel" class="w-full bg-slate-900 border border-white/5 focus:border-brand-blue focus:outline-none rounded-xl px-4 py-3 text-white">
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">諮詢技術類別</label>
+                            <select class="w-full bg-slate-900 border border-white/5 focus:border-brand-blue focus:outline-none rounded-xl px-4 py-3 text-slate-300">
+                                <option>光學鍍膜與 NDT 閃爍體技術</option>
+                                <option>5G 毫米波無源反光膜產品</option>
+                                <option>AI 室內外定位 & DDS 加密傳輸</option>
+                                <option>Blancco 數據抹除永續環保方案</option>
+                                <option>其他合作提案</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-400 font-medium">留言訊息內容 *</label>
+                            <textarea required rows="4" class="w-full bg-slate-900 border border-white/5 focus:border-brand-blue focus:outline-none rounded-xl p-4 text-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-brand-blue text-brand-dark font-bold rounded-xl shadow-lg hover:shadow-brand-blue/20 transition">
+                            傳送諮詢內容
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-white/5 py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Brand Footer Info -->
+                <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15,25 C15,25 35,65 38,78 C40,80 43,80 45,78 C48,65 58,45 68,35" stroke="url(#logo-grad-1)" stroke-width="8" stroke-linecap="round"/>
+                        <path d="M48,52 C55,42 75,25 85,25 C82,32 70,42 60,48 C75,42 82,35 83,40 C75,48 55,68 45,78" fill="url(#logo-grad-2)"/>
+                    </svg>
+                    <div>
+                        <span class="block text-md font-bold tracking-wider leading-none text-white">龍騰先進有限公司</span>
+                        <span class="block text-[9px] text-slate-500 font-mono tracking-widest uppercase mt-0.5">Vast Wings Advanced Ltd.</span>
+                    </div>
+                </div>
+
+                <!-- 版權宣稱 -->
+                <div class="text-center md:text-right text-xs text-slate-500 font-mono space-y-1">
+                    <p>© 2026 Vast Wings Advanced Ltd. All Rights Reserved.</p>
+                    <p>統一編號：83689829 | 桃園市中壢區中正路82號10F(201室)</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // 手機選單控制
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMenu);
+
+        // Tab 切換邏輯
+        function switchTab(tabId) {
+            // 隱藏所有內容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            // 顯示選定內容
+            document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+
+            // 重設所有按鈕樣式
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-6 py-3.5 rounded-xl border border-white/10 font-bold text-sm text-slate-400 hover:text-white hover:border-white/20 transition-all duration-300 flex items-center gap-2";
+            });
+
+            // 啟用當前按鈕高亮
+            let themeClass = '';
+            let borderClass = '';
+            if (tabId === 'optical') { themeClass = 'bg-brand-blue text-brand-dark'; borderClass = 'border-brand-blue'; }
+            else if (tabId === 'reflector') { themeClass = 'bg-brand-orange text-brand-dark'; borderClass = 'border-brand-orange'; }
+            else if (tabId === 'aiot') { themeClass = 'bg-purple-600 text-white'; borderClass = 'border-purple-600'; }
+            else if (tabId === 'blancco') { themeClass = 'bg-emerald-500 text-brand-dark'; borderClass = 'border-emerald-500'; }
+
+            document.getElementById(`btn-${tabId}`).className = `tab-btn px-6 py-3.5 rounded-xl border font-bold text-sm transition-all duration-300 flex items-center gap-2 ${themeClass} ${borderClass}`;
+        }
+
+        // --- 模擬器1：5G反光膜增益模擬邏輯 ---
+        let reflectorActive = true;
+        
+        function toggleReflector(active) {
+            reflectorActive = active;
+            const offBtn = document.getElementById('sim-off-btn');
+            const onBtn = document.getElementById('sim-on-btn');
+
+            if (active) {
+                onBtn.className = "px-4 py-2 text-xs font-bold bg-brand-orange text-brand-dark rounded-lg shadow-lg shadow-brand-orange/20 transition";
+                offBtn.className = "px-4 py-2 text-xs font-bold border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition";
+            } else {
+                offBtn.className = "px-4 py-2 text-xs font-bold bg-brand-orange text-brand-dark rounded-lg shadow-lg shadow-brand-orange/20 transition";
+                onBtn.className = "px-4 py-2 text-xs font-bold border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition";
+            }
+            updateSimulation();
+        }
+
+        function updateSimulation() {
+            const distance = parseInt(document.getElementById('sim-distance').value);
+            document.getElementById('sim-distance-val').innerText = `${distance} m`;
+
+            let baseDbm = -50; 
+            // 隨距離衰減
+            let attenuation = (distance - 10) * 0.4;
+            let signal = baseDbm - attenuation;
+
+            // 如果反光膜關閉 (盲區)，衰減多 25 dBm
+            if (!reflectorActive) {
+                signal -= 30;
+            }
+
+            signal = Math.round(signal);
+
+            // 顯示
+            const sigEl = document.getElementById('sim-signal-val');
+            const qualEl = document.getElementById('sim-quality-val');
+            sigEl.innerText = `${signal} dBm`;
+
+            if (signal >= -70) {
+                sigEl.className = "text-3xl font-black text-emerald-400 font-mono";
+                qualEl.innerText = "訊號極佳 (Excellent)";
+                qualEl.className = "text-lg font-bold text-emerald-400";
+            } else if (signal >= -85) {
+                sigEl.className = "text-3xl font-black text-amber-400 font-mono";
+                qualEl.innerText = "訊號中等 (Fair)";
+                qualEl.className = "text-lg font-bold text-amber-400";
+            } else {
+                sigEl.className = "text-3xl font-black text-red-500 font-mono";
+                qualEl.innerText = "通訊盲區 (Dead Zone)";
+                qualEl.className = "text-lg font-bold text-red-500";
+            }
+        }
+
+        // --- 模擬器2：ESG 減碳計算器邏輯 ---
+        function calculateEsg() {
+            const phones = parseInt(document.getElementById('calc-phone').value) || 0;
+            const tablets = parseInt(document.getElementById('calc-tablet').value) || 0;
+            const laptops = parseInt(document.getElementById('calc-laptop').value) || 0;
+            const desktops = parseInt(document.getElementById('calc-desktop').value) || 0;
+            const servers = parseInt(document.getElementById('calc-server').value) || 0;
+
+            // 減碳常數：
+            // Phone: 36, Tablet: 108, Laptop: 258, Desktop: 398, Server: 398
+            const co2 = (phones * 36) + (tablets * 108) + (laptops * 258) + ((desktops + servers) * 398);
+            
+            // 換算關係比率 (依Slide 11計算)
+            // Tablet (108kg): Truck: 127, Flight: 356, Hotel: 2
+            // 換算常數
+            const truck = Math.round(co2 * 1.176); 
+            const flight = Math.round(co2 * 3.3); 
+            const hotel = Math.round(co2 * 0.02); 
+
+            // 動態跑數效果
+            animateValue("esg-co2", co2);
+            animateValue("esg-truck", truck);
+            animateValue("esg-flight", flight);
+            animateValue("esg-hotel", hotel);
+        }
+
+        // 動態跑數增加質感
+        function animateValue(id, targetValue) {
+            const el = document.getElementById(id);
+            const start = parseInt(el.innerText.replace(/,/g, '')) || 0;
+            const duration = 400; // ms
+            let startTime = null;
+
+            function step(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const current = Math.floor(progress * (targetValue - start) + start);
+                el.innerText = current.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            }
+            window.requestAnimationFrame(step);
+        }
+
+        // 表單提交提示
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert("感謝您的留言！龍騰先進顧問李仁智先生將儘速與您聯繫，為您預約專案產品展示。");
+            e.target.reset();
+        }
+
+        // 初始化
+        window.onload = function() {
+            updateSimulation();
+            calculateEsg();
+        }
+    </script>
+</body>
+</html>
